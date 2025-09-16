@@ -21,7 +21,7 @@ setup(
     name='UW-RestClients-Space',
     version=VERSION,
     packages=['uw_space'],
-    author="UW-IT T&LS",
+    author="UW-IT SETS",
     author_email="aca-it@uw.edu",
     include_package_data=True,
     install_requires=[
