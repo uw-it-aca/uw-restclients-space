@@ -30,7 +30,7 @@ class Facilities(object):
 
     def search_by_name(self, facility_name):
         name = quote_plus(facility_name)
-        url = f"/space/v2/facility.json?name={name}"
+        url = f"/space/v2/facility.json?long_name={name}"
         response = self.dao.getURL(url, self._read_headers)
         logger.debug(
             {"url": url, "status": response.status, "data": response.data})
