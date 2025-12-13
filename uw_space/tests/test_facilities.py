@@ -72,6 +72,8 @@ class TestSpace(TestCase):
                 'status': 'A',
                 'type': 'Building'
             })
+        fac = Facilities().search_by_name("None")
+        self.assertEqual(len(fac), 0)
 
     def test_search_by_street(self):
         fac = Facilities().search_by_street("668 NE Northlake Way")
