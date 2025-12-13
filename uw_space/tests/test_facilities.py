@@ -55,3 +55,37 @@ class TestSpace(TestCase):
             DataFailureException,
             Facilities().search_by_number, "0"
         )
+
+    def test_search_by_name(self):
+        fac = Facilities().search_by_name("Allen Library")
+        self.assertEqual(len(fac), 1)
+        self.assertEqual(
+            fac[0].json_data(),
+            {
+                'code': 'ALB',
+                'last_updated': '2025-06-04 09:35:13',
+                'latitude': 47.6555730001,
+                'longitude': -122.30705,
+                'name': 'Allen Library',
+                'number': '1107',
+                'site': 'Seattle Main Campus',
+                'status': 'A',
+                'type': 'Building'
+            })
+
+    def test_search_by_street(self):
+        fac = Facilities().search_by_street("668 NE Northlake Way")
+        self.assertEqual(len(fac), 1)
+        self.assertEqual(
+            fac[0].json_data(),
+            {
+                'code': 'EHD',
+                'last_updated': '2025-06-04 09:35:03',
+                'latitude': 47.654766,
+                'longitude': -122.321073,
+                'name': '668 NE Northlake Way (Environmental Hlth Dept)',
+                'number': '1072',
+                'site': 'Seattle U-District',
+                'status': 'A',
+                'type': 'Building'
+            })
