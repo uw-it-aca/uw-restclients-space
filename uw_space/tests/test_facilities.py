@@ -8,6 +8,10 @@ from uw_space import Facilities
 from uw_space.utils import fdao_space_override
 
 data = {
+    'city': 'Seattle',
+    'street': '3900 East Stevens Way NE',
+    'state': 'WA',
+    'post_code': '98195',
     'code': 'MEB',
     'last_updated': '2022-09-22 19:41:34',
     'latitude': 47.6536929997,
@@ -35,6 +39,10 @@ class TestSpace(TestCase):
         fac = Facilities().search_by_code("MDR")
         self.assertEqual(len(fac), 1)
         self.assertEqual(fac[0].json_data(), {
+            'city': 'Seattle',
+            'street': '4320 Little Canoe Channel NE',
+            'state': 'WA',
+            'post_code': '98195',
             'code': 'MDR',
             'last_updated': '2022-09-22 12:49:38',
             'latitude': 47.6601320001,
@@ -62,6 +70,10 @@ class TestSpace(TestCase):
         self.assertEqual(
             fac[0].json_data(),
             {
+                'city': 'Seattle',
+                'street': '1900 NE Grant Ln',
+                'state': 'WA',
+                'post_code': '98195',
                 'code': 'ALB',
                 'last_updated': '2025-06-04 09:35:13',
                 'latitude': 47.6555730001,
@@ -81,6 +93,10 @@ class TestSpace(TestCase):
         self.assertEqual(
             fac[0].json_data(),
             {
+                'city': 'Seattle',
+                'street': '668 NE Northlake Way',
+                'state': 'WA',
+                'post_code': '98105-6428',
                 'code': 'EHD',
                 'last_updated': '2025-06-04 09:35:03',
                 'latitude': 47.654766,
