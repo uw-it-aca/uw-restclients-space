@@ -5,6 +5,7 @@
 from unittest import TestCase
 from restclients_core.exceptions import DataFailureException
 from uw_space import Facilities
+from uw_space.models import Facility
 from uw_space.utils import fdao_space_override
 
 data = {
@@ -13,7 +14,7 @@ data = {
     'state': 'WA',
     'post_code': '98195',
     'code': 'MEB',
-    'last_updated': '2022-09-22 19:41:34',
+    'last_updated': '2022-09-22 19:41:34-07:53',
     'latitude': 47.6536929997,
     'longitude': -122.304747,
     'name': 'Mechanical Engineering Building',
@@ -25,6 +26,74 @@ data = {
 
 @fdao_space_override
 class TestSpace(TestCase):
+
+    def test_model(self):
+        self.maxDiff = None
+        fac_json = {
+            "FacilityCode": "MEB",
+            "FacilityNumber": "1347",
+            "ModifiedDate": None,
+            "LongName": "Mechanical Engineering Building",
+            "Addresses": [
+                {
+                    "StreetAddress": "3900 East Stevens Way NE",
+                    "City": "Seattle",
+                    "State": "WA",
+                    "PostalCode": "98195"
+                }
+            ],
+            "CenterPoint": {
+                "Latitude": 47.6536929997,
+                "Longitude": -122.304747
+            },
+            "Site": {
+                "Description": "Seattle Main Campus"
+            },
+            "FacilityType": {
+                "Description": "Building"
+            }
+        }
+        fac = Facility.from_json(fac_json)
+        self.assertEqual(fac.json_data(), {
+             'city': 'Seattle',
+             'code': 'MEB',
+             'last_updated': None,
+             'latitude': 47.6536929997,
+             'longitude': -122.304747,
+             'name': 'Mechanical Engineering Building',
+             'number': '1347',
+             'post_code': '98195',
+             'site': 'Seattle Main Campus',
+             'state': 'WA',
+             'status': '',
+             'street': '3900 East Stevens Way NE',
+             'type': 'Building'
+        })
+        self.assertIsNotNone(str(fac))
+        fac = Facility.from_json(
+            {
+            "FacilityCode": "MEB",
+            "FacilityNumber": "1347",
+            "ModifiedDate": "6/4/2025 9:35:03 AM",
+            "LongName": "Mechanical Engineering Building"
+            }
+        )
+        self.assertEqual(fac.json_data(), {
+            'city': '',
+            'street': '',
+            'state': '',
+            'post_code': '',
+            'code': 'MEB',
+            'last_updated': "2025-06-04 09:35:03-07:53",
+            'latitude': '',
+            'longitude': '',
+            'name': 'Mechanical Engineering Building',
+            'number': '1347',
+            'site': '',
+            'status': '',
+            'type': ''
+        })
+
     def test_search_by_code(self):
         fac = Facilities().search_by_code("MEB")
         self.assertEqual(len(fac), 1)
@@ -44,7 +113,7 @@ class TestSpace(TestCase):
             'state': 'WA',
             'post_code': '98195',
             'code': 'MDR',
-            'last_updated': '2022-09-22 12:49:38',
+            'last_updated': "2022-09-22 12:49:38-07:53",
             'latitude': 47.6601320001,
             'longitude': -122.305391,
             'name': 'Madrona Hall',
@@ -75,7 +144,7 @@ class TestSpace(TestCase):
                 'state': 'WA',
                 'post_code': '98195',
                 'code': 'ALB',
-                'last_updated': '2025-06-04 09:35:13',
+                'last_updated': '2025-06-04 09:35:13-07:53',
                 'latitude': 47.6555730001,
                 'longitude': -122.30705,
                 'name': 'Allen Library',
@@ -98,7 +167,7 @@ class TestSpace(TestCase):
                 'state': 'WA',
                 'post_code': '98105-6428',
                 'code': 'EHD',
-                'last_updated': '2025-06-04 09:35:03',
+                'last_updated': '2025-06-04 09:35:03-07:53',
                 'latitude': 47.654766,
                 'longitude': -122.321073,
                 'name': '668 NE Northlake Way (Environmental Hlth Dept)',

@@ -9,7 +9,7 @@ from uw_space.utils import date_to_str, str_to_datetime
 
 class Facility(models.Model):
     code = models.CharField(max_length=16)
-    last_updated = models.DateTimeField()
+    last_updated = models.DateTimeField(null=True)
     latitude = models.CharField(max_length=32)
     longitude = models.CharField(max_length=32)
     name = models.CharField(max_length=96)
