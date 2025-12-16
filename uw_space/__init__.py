@@ -65,7 +65,8 @@ class Facilities(object):
         facilities = json_data.get("Facilities")
         for facility in facilities:
             status = facility.get("Status")
-            if status == "A":   # Active
+            if status == "A":
+                # Is Active
                 fnumber = facility.get("FacilityNumber")
                 if fnumber and len(fnumber):
                     fac = self.search_by_number(fnumber)
