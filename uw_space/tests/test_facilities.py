@@ -72,10 +72,10 @@ class TestSpace(TestCase):
         self.assertIsNotNone(str(fac))
         fac = Facility.from_json(
             {
-            "FacilityCode": "MEB",
-            "FacilityNumber": "1347",
-            "ModifiedDate": "6/4/2025 9:35:03 AM",
-            "LongName": "Mechanical Engineering Building"
+                "FacilityCode": "MEB",
+                "FacilityNumber": "1347",
+                "ModifiedDate": "6/4/2025 9:35:03 AM",
+                "LongName": "Mechanical Engineering Building"
             }
         )
         self.assertEqual(fac.json_data(), {
