@@ -9,7 +9,7 @@ from uw_space.utils import date_to_str, str_to_datetime
 
 class Facility(models.Model):
     code = models.CharField(max_length=16)
-    last_updated = models.DateTimeField()
+    last_updated = models.DateTimeField(null=True)
     latitude = models.CharField(max_length=32)
     longitude = models.CharField(max_length=32)
     name = models.CharField(max_length=96)
@@ -17,6 +17,11 @@ class Facility(models.Model):
     type = models.CharField(max_length=32)
     site = models.CharField(max_length=96)
     status = models.CharField(max_length=64)
+
+    city = models.CharField(max_length=64)
+    state = models.CharField(max_length=8)
+    street = models.CharField(max_length=64)
+    post_code = models.CharField(max_length=16)
 
     def __init__(self, *args, **kwargs):
         super(Facility, self).__init__(*args, **kwargs)
@@ -28,12 +33,21 @@ class Facility(models.Model):
         obj.number = json_data.get("FacilityNumber")
         obj.last_updated = str_to_datetime(json_data.get("ModifiedDate"))
         obj.name = json_data.get("LongName")
+
+        addresses = json_data.get("Addresses")
+        if addresses and len(addresses) > 0:
+            address = addresses[0]
+            obj.street = address.get("StreetAddress")
+            obj.city = address.get("City")
+            obj.state = address.get("State")
+            obj.post_code = address.get("PostalCode")
+
         cpoint = json_data.get("CenterPoint")
         if cpoint:
             obj.latitude = cpoint.get("Latitude")
             obj.longitude = cpoint.get("Longitude")
-        site_json = json_data.get("Site")
 
+        site_json = json_data.get("Site")
         if site_json:
             obj.site = site_json.get("Description")
 
@@ -53,6 +67,10 @@ class Facility(models.Model):
             "site": self.site,
             "status": self.status,
             "type": self.type,
+            "street": self.street,
+            "city": self.city,
+            "state": self.state,
+            "post_code": self.post_code,
         }
 
     def __str__(self):
