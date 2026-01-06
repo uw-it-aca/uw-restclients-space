@@ -1,4 +1,4 @@
-# Copyright 2025 UW-IT, University of Washington
+# Copyright 2026 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
 import json
@@ -66,7 +66,7 @@ class Facilities(object):
         for facility in facilities:
             status = facility.get("Status")
             if status == "A":
-                # Is Active
+                # Active
                 fnumber = facility.get("FacilityNumber")
                 if fnumber and len(fnumber):
                     fac = self.search_by_number(fnumber)

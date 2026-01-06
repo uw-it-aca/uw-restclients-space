@@ -1,4 +1,4 @@
-# Copyright 2025 UW-IT, University of Washington
+# Copyright 2026 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
 
@@ -54,6 +54,8 @@ class Facility(models.Model):
         ftype = json_data.get("FacilityType")
         if ftype:
             obj.type = ftype.get("Description")
+
+        obj.status = json_data.get("Status")
         return obj
 
     def json_data(self):
