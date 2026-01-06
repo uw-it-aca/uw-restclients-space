@@ -54,6 +54,8 @@ class Facility(models.Model):
         ftype = json_data.get("FacilityType")
         if ftype:
             obj.type = ftype.get("Description")
+
+        obj.status = json_data.get("Status")
         return obj
 
     def json_data(self):

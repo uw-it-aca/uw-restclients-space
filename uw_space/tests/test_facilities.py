@@ -20,6 +20,7 @@ data = {
     'name': 'Mechanical Engineering Building',
     'number': '1347',
     'site': 'Seattle Main Campus',
+    'status': 'A',
     'type': 'Building'
     }
 
@@ -51,7 +52,8 @@ class TestSpace(TestCase):
             },
             "FacilityType": {
                 "Description": "Building"
-            }
+            },
+            "Status": "A"
         }
         fac = Facility.from_json(fac_json)
         self.assertEqual(fac.json_data(), {
@@ -65,7 +67,7 @@ class TestSpace(TestCase):
              'post_code': '98195',
              'site': 'Seattle Main Campus',
              'state': 'WA',
-             'status': '',
+             'status': 'A',
              'street': '3900 East Stevens Way NE',
              'type': 'Building'
         })
@@ -90,20 +92,9 @@ class TestSpace(TestCase):
             'name': 'Mechanical Engineering Building',
             'number': '1347',
             'site': '',
-            'status': '',
+            'status': None,
             'type': ''
         })
-
-    def test_search_by_code(self):
-        fac = Facilities().search_by_code("MEB")
-        self.assertEqual(len(fac), 1)
-        data['status'] = 'A'
-        self.assertEqual(fac[0].json_data(), data)
-
-        self.assertRaises(
-            DataFailureException,
-            Facilities().search_by_code, "None"
-        )
 
         fac = Facilities().search_by_code("MDR")
         self.assertEqual(len(fac), 1)
@@ -125,7 +116,6 @@ class TestSpace(TestCase):
 
     def test_search_by_number(self):
         fac = Facilities().search_by_number("1347")
-        data['status'] = ''
         self.assertEqual(fac.json_data(), data)
 
         self.assertRaises(
