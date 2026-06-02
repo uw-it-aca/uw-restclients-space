@@ -74,7 +74,7 @@ class TestSpace(TestCase):
             'state': '',
             'post_code': '',
             'code': 'MEB',
-            'last_updated': "2025-06-04 09:35:03-07:53",
+            'last_updated': "2025-06-04 09:35:03-07:00",
             'latitude': None,
             'longitude': None,
             'center_point_url': None,
@@ -93,7 +93,7 @@ class TestSpace(TestCase):
             'state': 'WA',
             'post_code': '98195',
             'code': 'MDR',
-            'last_updated': "2022-09-22 12:49:38-07:53",
+            'last_updated': "2022-09-22 12:49:38-07:00",
             'latitude': 47.6601320001,
             'longitude': -122.305391,
             'center_point_url': (
@@ -113,7 +113,7 @@ class TestSpace(TestCase):
             'state': 'WA',
             'post_code': '98195',
             'code': 'MEB',
-            'last_updated': '2022-09-22 19:41:34-07:53',
+            'last_updated': '2022-09-22 19:41:34-07:00',
             'latitude': 47.6536929997,
             'longitude': -122.304747,
             'center_point_url': (
@@ -139,7 +139,7 @@ class TestSpace(TestCase):
                 'state': 'WA',
                 'post_code': '98195',
                 'code': 'ALB',
-                'last_updated': '2025-06-04 09:35:13-07:53',
+                'last_updated': '2025-06-04 09:35:13-07:00',
                 'latitude': 47.6555730001,
                 'longitude': -122.30705,
                 'center_point_url': (
@@ -163,7 +163,7 @@ class TestSpace(TestCase):
                 'state': 'WA',
                 'post_code': '98105-6428',
                 'code': 'EHD',
-                'last_updated': '2025-06-04 09:35:03-07:53',
+                'last_updated': '2025-06-04 09:35:03-07:00',
                 'latitude': 47.654766,
                 'longitude': -122.321073,
                 'center_point_url': (
