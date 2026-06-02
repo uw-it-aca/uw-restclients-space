@@ -2,13 +2,13 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from dateutil.parser import parse
-import pytz
+from zoneinfo import ZoneInfo
 from commonconf import override_settings
 
 fdao_space_override = override_settings(
     RESTCLIENTS_SPACE_DAO_CLASS='Mock')
 
-DEFAULT_TZ = pytz.timezone("America/Los_Angeles")
+DEFAULT_TZ = ZoneInfo("America/Los_Angeles")
 
 
 def str_to_datetime(s):
