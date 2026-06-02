@@ -45,7 +45,7 @@ class Facility(models.Model):
         cpoint = json_data.get("CenterPoint")
         if cpoint:
             cpoint_lat = cpoint.get("Latitude")
-            cpoint_long = cpoint.get("Latitude")
+            cpoint_long = cpoint.get("Longitude")
             cpoint_href = cpoint.get("Href")
             if cpoint_lat and cpoint_long:
                 obj.latitude = cpoint_lat
