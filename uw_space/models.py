@@ -10,14 +10,16 @@ from uw_space.utils import date_to_str, str_to_datetime
 class Facility(models.Model):
     code = models.CharField(max_length=16)
     last_updated = models.DateTimeField(null=True)
-    latitude = models.CharField(max_length=32)
-    longitude = models.CharField(max_length=32)
+    latitude = models.DecimalField(
+        max_digits=12, decimal_places=10, null=True)
+    longitude = models.DecimalField(
+        max_length=13, decimal_places=10, null=True)
     name = models.CharField(max_length=96)
     number = models.CharField(max_length=16)
     type = models.CharField(max_length=32)
     site = models.CharField(max_length=96)
     status = models.CharField(max_length=64)
-
+    center_point_url = models.CharField(max_length=96, null=True)
     city = models.CharField(max_length=64)
     state = models.CharField(max_length=8)
     street = models.CharField(max_length=64)
@@ -44,8 +46,14 @@ class Facility(models.Model):
 
         cpoint = json_data.get("CenterPoint")
         if cpoint:
-            obj.latitude = cpoint.get("Latitude")
-            obj.longitude = cpoint.get("Longitude")
+            cpoint_lat = cpoint.get("Latitude")
+            cpoint_long = cpoint.get("Longitude")
+            cpoint_href = cpoint.get("Href")
+            if cpoint_lat and cpoint_long:
+                obj.latitude = cpoint_lat
+                obj.longitude = cpoint_long
+                if cpoint_href and cpoint_href.startswith("http"):
+                    obj.center_point_url = cpoint_href
 
         site_json = json_data.get("Site")
         if site_json:
@@ -64,6 +72,7 @@ class Facility(models.Model):
             "last_updated": date_to_str(self.last_updated),
             "latitude": self.latitude,
             "longitude": self.longitude,
+            "center_point_url": self.center_point_url,
             "name": self.name,
             "number": self.number,
             "site": self.site,
