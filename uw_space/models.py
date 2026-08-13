@@ -3,7 +3,9 @@
 
 
 import json
+
 from restclients_core import models
+
 from uw_space.utils import date_to_str, str_to_datetime
 
 
@@ -24,9 +26,10 @@ class Facility(models.Model):
     state = models.CharField(max_length=8)
     street = models.CharField(max_length=64)
     post_code = models.CharField(max_length=16)
+    map_url =  models.CharField(max_length=96, null=True)
 
     def __init__(self, *args, **kwargs):
-        super(Facility, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
     @staticmethod
     def from_json(json_data):
@@ -63,6 +66,10 @@ class Facility(models.Model):
         if ftype:
             obj.type = ftype.get("Description")
 
+        maplink = json_data.get("MapLink")
+        if maplink:
+            obj.map_url = maplink.get("Href")
+
         obj.status = json_data.get("Status")
         return obj
 
@@ -82,6 +89,7 @@ class Facility(models.Model):
             "city": self.city,
             "state": self.state,
             "post_code": self.post_code,
+            "map_url": self.map_url,
         }
 
     def __str__(self):

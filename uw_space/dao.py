@@ -2,14 +2,15 @@
 # SPDX-License-Identifier: Apache-2.0
 
 
-from restclients_core.dao import DAO
-from os.path import abspath, dirname
 import os
+from os.path import abspath, dirname
+
+from restclients_core.dao import DAO
 
 
 class SPACE_DAO(DAO):
     def __init__(self):
-        return super(SPACE_DAO, self).__init__()
+        super().__init__()
 
     def service_name(self):
         return "space"

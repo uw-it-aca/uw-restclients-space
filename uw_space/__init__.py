@@ -4,14 +4,16 @@
 import json
 import logging
 from urllib.parse import quote_plus
+
 from restclients_core.exceptions import DataFailureException
+
 from uw_space.dao import SPACE_DAO
 from uw_space.models import Facility
 
 logger = logging.getLogger(__name__)
 
 
-class Facilities(object):
+class Facilities:
 
     def __init__(self):
         self.dao = SPACE_DAO()

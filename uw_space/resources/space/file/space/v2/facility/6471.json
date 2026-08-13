@@ -48,5 +48,9 @@
   "Name": "Madrona Hall",
   "LongName": "Madrona Hall",
   "FacilityCode": "MDR",
-  "FacilityNumber": "6471"
+  "FacilityNumber": "6471",
+  "MapLink": {
+    "Href": null,
+    "MapId": null
+  }
 }

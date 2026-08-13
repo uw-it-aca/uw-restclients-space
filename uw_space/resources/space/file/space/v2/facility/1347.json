@@ -36,5 +36,9 @@
         "Description": "Seattle Main Campus"
     },
     "SpaceCount": 252,
-    "Status": "A"
+    "Status": "A",
+    "MapLink": {
+      "Href": "https://map.uw.edu/?id=0000#!m/999999?share",
+      "MapId": "999999"
+    }
 }

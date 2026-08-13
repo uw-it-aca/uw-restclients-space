@@ -37,5 +37,9 @@
   "Name": "668 NE Northlake Way",
   "LongName": "668 NE Northlake Way (Environmental Hlth Dept)",
   "FacilityCode": "EHD",
-  "FacilityNumber": "1072"
+  "FacilityNumber": "1072",
+  "MapLink": {
+    "Href": "https://map.uw.edu/?id=0000#!m/999999?share",
+    "MapId": "999999"
+  }
 }
