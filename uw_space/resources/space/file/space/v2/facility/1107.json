@@ -37,5 +37,9 @@
   "Name": "Allen Library",
   "LongName": "Allen Library",
   "FacilityCode": "ALB",
-  "FacilityNumber": "1107"
+  "FacilityNumber": "1107",
+  "MapLink": {
+    "Href": "https://map.uw.edu/?id=0000#!m/222222?share",
+    "MapId": "222222"
+  }
 }
