@@ -3,7 +3,9 @@
 
 
 import json
+
 from restclients_core import models
+
 from uw_space.utils import date_to_str, str_to_datetime
 
 
@@ -27,7 +29,7 @@ class Facility(models.Model):
     map_url =  models.CharField(max_length=96, null=True)
 
     def __init__(self, *args, **kwargs):
-        super(Facility, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
     @staticmethod
     def from_json(json_data):

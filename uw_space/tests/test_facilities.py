@@ -3,7 +3,9 @@
 
 
 from unittest import TestCase
+
 from restclients_core.exceptions import DataFailureException
+
 from uw_space import Facilities
 from uw_space.models import Facility
 from uw_space.utils import fdao_space_override
