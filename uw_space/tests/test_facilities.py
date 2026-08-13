@@ -3,7 +3,9 @@
 
 
 from unittest import TestCase
+
 from restclients_core.exceptions import DataFailureException
+
 from uw_space import Facilities
 from uw_space.models import Facility
 from uw_space.utils import fdao_space_override
@@ -57,7 +59,8 @@ class TestSpace(TestCase):
              'state': 'WA',
              'status': 'A',
              'street': '3900 East Stevens Way NE',
-             'type': 'Building'
+             'type': 'Building',
+             'map_url': None,
         })
         self.assertIsNotNone(str(fac))
         fac = Facility.from_json(
@@ -82,7 +85,8 @@ class TestSpace(TestCase):
             'number': '1347',
             'site': '',
             'status': None,
-            'type': ''
+            'type': '',
+            'map_url': None,
         })
 
         fac = Facilities().search_by_code("MDR")
@@ -102,7 +106,8 @@ class TestSpace(TestCase):
             'number': '6471',
             'site': 'Seattle Main Campus',
             'status': 'A',
-            'type': 'Building'
+            'type': 'Building',
+            'map_url': None,
         })
 
     def test_search_by_number(self):
@@ -122,7 +127,8 @@ class TestSpace(TestCase):
             'number': '1347',
             'site': 'Seattle Main Campus',
             'status': 'A',
-            'type': 'Building'
+            'type': 'Building',
+            'map_url': 'https://map.uw.edu/?id=0000#!m/999999?share',
         })
 
         self.assertRaises(
@@ -148,7 +154,8 @@ class TestSpace(TestCase):
                 'number': '1107',
                 'site': 'Seattle Main Campus',
                 'status': 'A',
-                'type': 'Building'
+                'type': 'Building',
+                'map_url': 'https://map.uw.edu/?id=0000#!m/222222?share',
             })
         fac = Facilities().search_by_name("None")
         self.assertEqual(len(fac), 0)
@@ -172,5 +179,6 @@ class TestSpace(TestCase):
                 'number': '1072',
                 'site': 'Seattle U-District',
                 'status': 'A',
-                'type': 'Building'
+                'type': 'Building',
+                'map_url': 'https://map.uw.edu/?id=0000#!m/999999?share',
             })
